@@ -13,7 +13,19 @@ export function Oppgave2() {
 
   return (
     <div>
-      <h1>Opprett bruker</h1>
+      <h1>Oppgave 2</h1>
+      <h2>Beskrivelse</h2>
+      <p>
+        I denne oppgaven skal du legge til validering av input-elementene, så
+        det ikke sendes avgårde ugyldige data.
+      </p>
+      <ul>
+        <li>Ingen av feltene kan være tomme</li>
+        <li>Passordet må være minst 6 tegn</li>
+        <li>
+          Som bruker ønsker jeg å se en feilmelding om hva som har gått feil
+        </li>
+      </ul>
       <form onSubmit={handleSubmit} className="form">
         <div>
           <label>

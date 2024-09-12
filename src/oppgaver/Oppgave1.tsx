@@ -9,7 +9,12 @@ export function Oppgave1() {
 
   return (
     <div>
-      <h1>Opprett bruker</h1>
+      <h1>Oppgave 1</h1>
+      <h2>Beskrivelse</h2>
+      <p>
+        I denne oppgaven skal du legge til state i input-elementene og poste
+        brukernavn og passord med postForm-funksjonen.
+      </p>
       <form onSubmit={handleSubmit} className="form">
         <div>
           <label>
