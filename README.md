@@ -1,9 +1,15 @@
 # Setup
 
-Node version:
+Node version (see .nvmrc):
+
+```
 nvm use
+```
 
 # App run
 
-Runs on port 3000
+Run client and server: (port 3000 and 8000)
+
+```
 npm run dev
+```
