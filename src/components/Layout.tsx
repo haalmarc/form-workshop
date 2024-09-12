@@ -14,9 +14,6 @@ export function Layout() {
           <li>
             <Link to="/opg3">Oppgave 3</Link>
           </li>
-          <li>
-            <Link to="/nothing-here">Nothing Here</Link>
-          </li>
         </ul>
       </nav>
 
