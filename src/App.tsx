@@ -1,10 +1,9 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { Oppgave1 } from "./oppgaver/Oppgave1";
 import { Oppgave2 } from "./oppgaver/Oppgave2";
 import { Oppgave3 } from "./oppgaver/Oppgave3";
 import { Layout } from "./components/Layout";
-import { NoMatch } from "./components/NoMatch";
 import { Oppgave4 } from "./oppgaver/Oppgave4";
 import { Fasit4 } from "./oppgaver/Fasit4";
 import { Oppgave5 } from "./oppgaver/Oppgave5";
@@ -33,7 +32,7 @@ export function App() {
           <Route path="opg9" element={<Oppgave9 />} />
           <Route path="fasit9" element={<Fasit9 />} />
 
-          <Route path="*" element={<NoMatch />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
     </div>
