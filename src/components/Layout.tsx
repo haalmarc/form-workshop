@@ -1,4 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
+import { fetchUsers } from "../utils/postForm";
 
 // Liste over oppgaver og fasit
 const taskList = [
@@ -14,7 +16,20 @@ const taskList = [
   { path: "/fasit9", label: "Fasit 9" },
 ];
 
+interface User {
+  username: string;
+  password: string;
+  id: string;
+}
+
 export function Layout() {
+  const { data: users } = useQuery<User[]>({
+    queryKey: ["users"],
+    queryFn: fetchUsers,
+    staleTime: 0,
+    refetchInterval: 5000,
+  });
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -105,6 +120,13 @@ export function Layout() {
       <hr />
 
       <Outlet />
+
+      <h2>Eksisterende brukere</h2>
+      <ul>
+        {users?.map((u) => (
+          <li key={u.id}>{`${u.username} ${u.password}`}</li>
+        ))}
+      </ul>
     </div>
   );
 }

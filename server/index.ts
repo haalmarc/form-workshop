@@ -1,30 +1,50 @@
 import express from "express";
+import cors from "cors";
 
 const app = express();
 const PORT = 8000;
 
+const serverDelay = 500;
+
+app.use(cors());
 app.use(express.json());
 
-const todos = [
-  { id: 1, task: "Learn Express", completed: false },
-  { id: 2, task: "Build a REST API", completed: false },
+interface User {
+  username: string;
+  password: string;
+  id: string;
+}
+
+const users: User[] = [
+  { id: "1", username: "Formeriko", password: "123456" },
+  { id: "2", username: "UfoSorm", password: "654321" },
 ];
 
-app.get("/todos", (req, res) => {
-  res.json(todos);
+app.get("/users", (req, res) => {
+  res.json(users);
 });
 
-app.post("/todos", (req, res) => {
-  const newTodo = req.body;
-  if (!newTodo.task) {
-    return res.status(400).json({ error: "Task is required" });
+app.post("/users", (req, res) => {
+  const newUser = req.body;
+  if (!newUser.username) {
+    return res.status(400).json({ error: "Username required" });
   }
 
-  const todoWithId = { id: todos.length + 1, ...newTodo, completed: false };
+  if (!newUser.password) {
+    return res.status(400).json({ error: "Password required" });
+  }
 
-  todos.push(todoWithId);
+  const checkedUser = {
+    username: newUser.username,
+    password: newUser.password,
+    id: (users.length + 1).toString(),
+  };
 
-  res.json(todos);
+  users.push(checkedUser);
+
+  setTimeout(() => {
+    res.json(users);
+  }, serverDelay);
 });
 
 app.listen(PORT, () => {
