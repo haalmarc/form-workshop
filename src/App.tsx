@@ -12,6 +12,8 @@ import { Oppgave7 } from "./oppgaver/Oppgave7";
 import { Oppgave9 } from "./oppgaver/Oppgave9";
 import { Fasit9 } from "./oppgaver/Fasit9";
 import { Oppgave8 } from "./oppgaver/Oppgave8";
+import { Oppgave10 } from "./oppgaver/Oppgave10";
+import { Oppgave11 } from "./oppgaver/Oppgave11";
 
 export function App() {
   return (
@@ -30,6 +32,9 @@ export function App() {
           <Route path="opg8" element={<Oppgave8 />} />
           <Route path="opg9" element={<Oppgave9 />} />
           <Route path="fasit9" element={<Fasit9 />} />
+
+          <Route path="opg10" element={<Oppgave10 />} />
+          <Route path="opg11" element={<Oppgave11 />} />
 
           <Route path="*" element={<Navigate to="/" />} />
         </Route>

@@ -27,3 +27,16 @@ export async function fetchUsers() {
   }
   return response.json();
 }
+
+interface RandomName {
+  name: string;
+}
+export async function fetchRandomName(): Promise<RandomName> {
+  const response = await fetch("http://localhost:8000/random-name");
+  if (!response.ok) {
+    throw new Error("Failed to fetch name");
+  }
+  return response.json();
+}
+
+export const queryKeyUsers = ["users"];

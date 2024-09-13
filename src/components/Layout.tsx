@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
-import { fetchUsers } from "../utils/postForm";
+import { fetchUsers, queryKeyUsers } from "../utils/postForm";
 
 // Liste over oppgaver og fasit
 const taskList = [
@@ -14,6 +14,8 @@ const taskList = [
   { path: "/opg7", label: "Oppgave 7" },
   { path: "/opg8", label: "Oppgave 8" },
   { path: "/fasit9", label: "Fasit 9" },
+  { path: "/opg10", label: "Oppgave 10" },
+  { path: "/opg11", label: "Oppgave 11" },
 ];
 
 interface User {
@@ -24,10 +26,10 @@ interface User {
 
 export function Layout() {
   const { data: users } = useQuery<User[]>({
-    queryKey: ["users"],
+    queryKey: queryKeyUsers,
     queryFn: fetchUsers,
     staleTime: 0,
-    refetchInterval: 5000,
+    refetchInterval: 20 * 1000,
   });
 
   const location = useLocation();

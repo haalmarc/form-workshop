@@ -47,6 +47,24 @@ app.post("/users", (req, res) => {
   }, serverDelay);
 });
 
+const firstParts = ["Zar", "Blor", "Grib", "Xan", "Quor", "Drak"];
+const middleParts = ["ta", "ox", "un", "ib", "yk", "nor"];
+const lastParts = ["gorn", "rax", "dor", "fin", "lux", "zorn"];
+
+function generateRandomName() {
+  const first = firstParts[Math.floor(Math.random() * firstParts.length)];
+  const middle = middleParts[Math.floor(Math.random() * middleParts.length)];
+  const last = lastParts[Math.floor(Math.random() * lastParts.length)];
+
+  return `${first}${middle}${last}`;
+}
+
+// Route for å returnere et tilfeldig navn
+app.get("/random-name", (req, res) => {
+  const randomName = generateRandomName();
+  res.json({ name: randomName });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
