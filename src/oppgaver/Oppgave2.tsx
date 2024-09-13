@@ -5,7 +5,7 @@ import { postForm } from "../utils/postForm";
   Oppgave: Legg til validering av input-feltene.
   - Ingen av feltene kan være tomme
   - Passordet må være minst 6 tegn
-  - Som bruker ønsker jeg å se hva som har gått feil
+  - Som bruker ønsker jeg å se en feilmelding
 */
 
 export function Oppgave2() {
