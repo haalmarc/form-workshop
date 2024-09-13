@@ -5,7 +5,7 @@ import { postForm } from "../utils/postForm";
   👉 Oppgave: Legg til feilhåndtering om skjemaet feiler.
   - Bytt ut postForm med postFormWithError og vis en feilmelding når kallet feiler.
 
-  💡 Bonus-spørsmål: Hva er forskjellen på å vise feilmeldingen med en error boundary vs bare i en div?
+  💡 Bonus-spørsmål: Hva er forskjellen på å vise feilmeldingen med en ErrorBoundary vs med state?
 */
 
 export function Oppgave4() {
@@ -51,6 +51,9 @@ export function Oppgave4() {
     await postForm(username, password);
 
     setIsLoading(false);
+
+    setUsername("");
+    setPassword("");
   }
 
   return (

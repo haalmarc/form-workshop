@@ -17,11 +17,13 @@ export function Oppgave7() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     await postForm(data.username, data.password);
+    reset();
   };
 
   return (

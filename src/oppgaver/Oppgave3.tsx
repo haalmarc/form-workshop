@@ -2,9 +2,11 @@ import { useState } from "react";
 import { postForm } from "../utils/postForm";
 
 /*
-  👉 Oppgave: Som bruker ønsker jeg å se "laster"-tekst, mens skjemaet sendes inn
+  👉 Oppgave: Legg til lasting-status
+  - Vis "laster" på knappen mens det lastes
+  - Ikke tillat å sende inn flere ganger mens det lastes
 
-  💡 Bonus-spørsmål: Hva er forskjellen på å vise feilmeldingen med en error boundary vs bare i en div?
+  💡 Bonus-spørsmål: TODO
 */
 
 export function Oppgave3() {
@@ -45,6 +47,9 @@ export function Oppgave3() {
     }
 
     await postForm(username, password);
+
+    setUsername("");
+    setPassword("");
   }
 
   return (

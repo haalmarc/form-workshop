@@ -44,6 +44,9 @@ export function Fasit4() {
 
     try {
       await postFormWithError(username, password);
+
+      setUsername("");
+      setPassword("");
     } catch (e) {
       if (e instanceof Error) {
         setFormError(e.message);

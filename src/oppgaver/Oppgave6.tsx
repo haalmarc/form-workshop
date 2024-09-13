@@ -16,10 +16,11 @@ type Inputs = {
 };
 
 export function Oppgave6() {
-  const { register, handleSubmit } = useForm<Inputs>();
+  const { register, handleSubmit, reset } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     await postForm(data.username, data.password);
+    reset();
   };
 
   return (

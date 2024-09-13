@@ -18,6 +18,9 @@ export function Oppgave2() {
     event.preventDefault();
 
     await postForm(username, password);
+
+    setUsername("");
+    setPassword("");
   }
 
   return (

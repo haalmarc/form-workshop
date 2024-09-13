@@ -21,6 +21,7 @@ export function Oppgave9() {
   const {
     register,
     handleSubmit,
+    reset,
     setError,
     formState: { errors, isSubmitting },
   } = useForm<Inputs>();
@@ -28,6 +29,7 @@ export function Oppgave9() {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       await postFormWithError(data.username, data.password);
+      reset();
     } catch (e) {
       if (e instanceof Error) {
         setError("root", {
