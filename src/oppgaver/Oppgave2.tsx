@@ -12,7 +12,7 @@ export function Oppgave2() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  async function handleSubmit(event: React.FormEvent) {
+  async function onSubmit(event: React.FormEvent) {
     event.preventDefault();
 
     await postForm(username, password);
@@ -21,7 +21,7 @@ export function Oppgave2() {
   return (
     <div>
       <h1>Oppgave 2</h1>
-      <form onSubmit={handleSubmit} className="form">
+      <form onSubmit={onSubmit} className="form">
         <div>
           <label>
             Brukernavn

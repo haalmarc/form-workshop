@@ -1,16 +1,15 @@
 import { useState } from "react";
-import { postForm } from "../utils/postForm";
+import { postFormWithError } from "../utils/postForm";
 
-/*
-  Oppgave: Som bruker ønsker jeg å se "laster"-tekst, mens skjemaet sendes inn
-*/
-
-export function Oppgave3() {
+export function Fasit4() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [formError, setFormError] = useState("");
 
   function validateForm() {
     let isValid = true;
@@ -41,13 +40,24 @@ export function Oppgave3() {
     if (!validateForm()) {
       return;
     }
+    setIsLoading(true);
 
-    await postForm(username, password);
+    try {
+      await postFormWithError(username, password);
+    } catch (e) {
+      if (e instanceof Error) {
+        setFormError(e.message);
+      } else {
+        setFormError("En ukjent feil oppstod");
+      }
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
     <div>
-      <h1>Oppgave 3</h1>
+      <h1>Fasit oppgave 4</h1>
       <form onSubmit={onSubmit} className="form">
         <div>
           <label>
@@ -77,7 +87,10 @@ export function Oppgave3() {
           </label>
         </div>
 
-        <button type="submit">Opprett bruker</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? "Laster" : "Opprett bruker"}
+        </button>
+        {formError && <span className="errorMessage">{formError}</span>}
       </form>
     </div>
   );

@@ -38,7 +38,7 @@ export function Oppgave4() {
     return isValid;
   }
 
-  async function handleSubmit(event: React.FormEvent) {
+  async function onSubmit(event: React.FormEvent) {
     event.preventDefault();
 
     if (!validateForm()) {
@@ -54,7 +54,7 @@ export function Oppgave4() {
   return (
     <div>
       <h1>Oppgave 4</h1>
-      <form onSubmit={handleSubmit} className="form">
+      <form onSubmit={onSubmit} className="form">
         <div>
           <label>
             Brukernavn

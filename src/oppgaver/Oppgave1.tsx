@@ -3,7 +3,7 @@ import { postForm } from "../utils/postForm";
 // Oppgave: Bytt ut hardkodede verdier i postForm med verdier fra inputfeltene
 
 export function Oppgave1() {
-  async function handleSubmit(event: React.FormEvent) {
+  async function onSubmit(event: React.FormEvent) {
     event.preventDefault();
 
     await postForm("todo", "todo");
@@ -12,7 +12,7 @@ export function Oppgave1() {
   return (
     <div>
       <h1>Oppgave 1</h1>
-      <form onSubmit={handleSubmit} className="form">
+      <form onSubmit={onSubmit} className="form">
         <div>
           <label>
             Brukernavn
