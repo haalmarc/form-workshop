@@ -1,9 +1,13 @@
-import { postForm } from "../utils/postForm";
+import { postFormWithError } from "../utils/postForm";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-/*
-  Oppgave: Som bruker ønsker jeg å se "laster"-tekst, mens skjemaet sendes inn
-  - Les om formState i useForm: https://react-hook-form.com/docs/useform/formstate
+/* 
+  Oppgave: Bruk heller biblioteket Zod til å validere.
+  - Hint: se https://dev.to/majiedo/using-zod-with-react-hook-form-using-typescript-1mgk
+
+  - Ingen av feltene kan være tomme
+  - Passordet må være minst 6 tegn
+  - Som bruker ønsker jeg å se en feilmelding om et felt er feil fylt ut
 */
 
 type Inputs = {
@@ -11,20 +15,33 @@ type Inputs = {
   password: string;
 };
 
-export function Oppgave7() {
+export function Oppgave9() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    setError,
+    formState: { errors, isSubmitting },
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    await postForm(data.username, data.password);
+    try {
+      await postFormWithError(data.username, data.password);
+    } catch (e) {
+      if (e instanceof Error) {
+        setError("root", {
+          message: e.message,
+        });
+      } else {
+        setError("root", {
+          message: "En ukjent feil oppstod",
+        });
+      }
+    }
   };
 
   return (
     <div>
-      <h1>Oppgave 7 - Laste-status</h1>
+      <h1>Oppgave 9 - Zod</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <div>
           <label>
@@ -58,7 +75,12 @@ export function Oppgave7() {
           </label>
         </div>
 
-        <button>Opprett bruker</button>
+        <button disabled={isSubmitting}>
+          {isSubmitting ? "Laster" : "Opprett bruker"}
+        </button>
+        {errors.root && (
+          <span className="errorMessage">{errors.root.message}</span>
+        )}
       </form>
     </div>
   );

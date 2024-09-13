@@ -20,7 +20,7 @@ export function Oppgave2() {
 
   return (
     <div>
-      <h1>Oppgave 2</h1>
+      <h1>Oppgave 2 - Validering</h1>
       <form onSubmit={onSubmit} className="form">
         <div>
           <label>

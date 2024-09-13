@@ -15,7 +15,7 @@ export function Layout() {
   return (
     <div>
       <nav>
-        <ul>
+        <ul className="nav-list">
           <li>
             <Link to="/">Oppgave 1</Link>
           </li>
@@ -30,6 +30,9 @@ export function Layout() {
           <TaskLink taskNumber={6} />
           <TaskLink taskNumber={7} />
           <TaskLink taskNumber={8} />
+          <li>
+            <Link to="/fasit9">Fasit 9</Link>
+          </li>
         </ul>
       </nav>
 

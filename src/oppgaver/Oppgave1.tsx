@@ -13,7 +13,7 @@ export function Oppgave1() {
 
   return (
     <div>
-      <h1>Oppgave 1</h1>
+      <h1>Oppgave 1 - Vanilla React</h1>
       <form onSubmit={onSubmit} className="form">
         <div>
           <label>

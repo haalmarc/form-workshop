@@ -17,12 +17,12 @@ export function Oppgave6() {
   const { register, handleSubmit } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    await postForm(data.username, data.username);
+    await postForm(data.username, data.password);
   };
 
   return (
     <div>
-      <h1>Oppgave 6</h1>
+      <h1>Oppgave 6 - Validering av felter</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <div>
           <label>

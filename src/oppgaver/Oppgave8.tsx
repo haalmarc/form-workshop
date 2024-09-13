@@ -1,4 +1,4 @@
-import { postFormWithError } from "../utils/postForm";
+import { postForm } from "../utils/postForm";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 /* 
@@ -16,29 +16,16 @@ export function Oppgave8() {
   const {
     register,
     handleSubmit,
-    setError,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    try {
-      await postFormWithError(data.username, data.username);
-    } catch (e) {
-      if (e instanceof Error) {
-        setError("root", {
-          message: e.message,
-        });
-      } else {
-        setError("root", {
-          message: "En ukjent feil oppstod",
-        });
-      }
-    }
+    await postForm(data.username, data.password);
   };
 
   return (
     <div>
-      <h1>Oppgave 8</h1>
+      <h1>Oppgave 8 - Feilende kall</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <div>
           <label>
@@ -72,12 +59,7 @@ export function Oppgave8() {
           </label>
         </div>
 
-        <button disabled={isSubmitting}>
-          {isSubmitting ? "Laster" : "Opprett bruker"}
-        </button>
-        {errors.root && (
-          <span className="errorMessage">{errors.root.message}</span>
-        )}
+        <button>Opprett bruker</button>
       </form>
     </div>
   );

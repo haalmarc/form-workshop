@@ -13,7 +13,7 @@ export function Oppgave5() {
 
   return (
     <div>
-      <h1>Oppgave 5</h1>
+      <h1>Oppgave 5 - React Hook Form</h1>
       <form onSubmit={onSubmit} className="form">
         <div>
           <label>

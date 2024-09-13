@@ -10,13 +10,14 @@ import { Fasit4 } from "./oppgaver/Fasit4";
 import { Oppgave5 } from "./oppgaver/Oppgave5";
 import { Oppgave6 } from "./oppgaver/Oppgave6";
 import { Oppgave7 } from "./oppgaver/Oppgave7";
+import { Oppgave9 } from "./oppgaver/Oppgave9";
+import { Fasit9 } from "./oppgaver/Fasit9";
 import { Oppgave8 } from "./oppgaver/Oppgave8";
 
 export function App() {
   return (
     <div>
-      <h1>Hello world</h1>
-      <p>Her er noe tekst...</p>
+      <h1>Form Workshop</h1>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Oppgave1 />} />
@@ -29,6 +30,8 @@ export function App() {
           <Route path="opg6" element={<Oppgave6 />} />
           <Route path="opg7" element={<Oppgave7 />} />
           <Route path="opg8" element={<Oppgave8 />} />
+          <Route path="opg9" element={<Oppgave9 />} />
+          <Route path="fasit9" element={<Fasit9 />} />
 
           <Route path="*" element={<NoMatch />} />
         </Route>
