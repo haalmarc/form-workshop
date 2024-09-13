@@ -2,10 +2,26 @@
   box-sizing: border-box;
 }
 
-.nav-list {
+.layout-container {
+  padding: 0 2rem;
+}
+
+nav {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  gap: 2rem;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    padding: 0;
+    list-style: none;
+  }
 }
 
 .form {

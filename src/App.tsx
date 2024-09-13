@@ -16,7 +16,6 @@ import { Oppgave8 } from "./oppgaver/Oppgave8";
 export function App() {
   return (
     <div>
-      <h1>Form Workshop</h1>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Oppgave1 />} />

@@ -36,50 +36,58 @@ export function Layout() {
   };
 
   return (
-    <div>
+    <div className="layout-container">
+      <h1>Form Workshop</h1>
       <nav>
-        <h2>Vanilla React</h2>
-        <ul className="nav-list">
-          {taskList.slice(0, 5).map((task, index) => (
-            <li
-              key={index}
-              style={{
-                fontWeight: task.path === location.pathname ? "bold" : "normal",
-              }}
-            >
-              <Link
-                to={task.path}
+        <div>
+          <h2>Vanilla React</h2>
+          <ul>
+            {taskList.slice(0, 5).map((task, index) => (
+              <li
+                key={index}
                 style={{
-                  textDecoration:
-                    task.path === location.pathname ? "underline" : "none",
+                  fontWeight:
+                    task.path === location.pathname ? "bold" : "normal",
                 }}
               >
-                {task.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <h2>React hook form</h2>
-        <ul>
-          {taskList.slice(5).map((task, index) => (
-            <li
-              key={index}
-              style={{
-                fontWeight: task.path === location.pathname ? "bold" : "normal",
-              }}
-            >
-              <Link
-                to={task.path}
+                <Link
+                  to={task.path}
+                  style={{
+                    textDecoration:
+                      task.path === location.pathname ? "underline" : "none",
+                  }}
+                >
+                  {task.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h2>React hook form</h2>
+          <ul>
+            {taskList.slice(5).map((task, index) => (
+              <li
+                key={index}
                 style={{
-                  textDecoration:
-                    task.path === location.pathname ? "underline" : "none",
+                  fontWeight:
+                    task.path === location.pathname ? "bold" : "normal",
                 }}
               >
-                {task.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+                <Link
+                  to={task.path}
+                  style={{
+                    textDecoration:
+                      task.path === location.pathname ? "underline" : "none",
+                  }}
+                >
+                  {task.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </nav>
 
       <div>
