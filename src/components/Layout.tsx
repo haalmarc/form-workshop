@@ -1,40 +1,98 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 
-interface TaskLinkProps {
-  taskNumber: number;
-}
-function TaskLink({ taskNumber }: TaskLinkProps) {
-  return (
-    <li key={taskNumber}>
-      <Link to={`/opg${taskNumber}`}>Oppgave {taskNumber}</Link>
-    </li>
-  );
-}
+// Liste over oppgaver og fasit
+const taskList = [
+  { path: "/", label: "Oppgave 1" },
+  { path: "/opg2", label: "Oppgave 2" },
+  { path: "/opg3", label: "Oppgave 3" },
+  { path: "/opg4", label: "Oppgave 4" },
+  { path: "/fasit4", label: "Fasit 4" },
+  { path: "/opg5", label: "Oppgave 5" },
+  { path: "/opg6", label: "Oppgave 6" },
+  { path: "/opg7", label: "Oppgave 7" },
+  { path: "/opg8", label: "Oppgave 8" },
+  { path: "/fasit9", label: "Fasit 9" },
+];
 
 export function Layout() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Finn indeksen til nåværende oppgave eller fasit
+  const currentIndex = taskList.findIndex(
+    (task) => task.path === location.pathname
+  );
+
+  const handleNext = () => {
+    if (currentIndex < taskList.length - 1) {
+      navigate(taskList[currentIndex + 1].path);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentIndex > 0) {
+      navigate(taskList[currentIndex - 1].path);
+    }
+  };
+
   return (
     <div>
       <nav>
+        <h2>Vanilla React</h2>
         <ul className="nav-list">
-          <li>
-            <Link to="/">Oppgave 1</Link>
-          </li>
-          <TaskLink taskNumber={2} />
-          <TaskLink taskNumber={3} />
-          <TaskLink taskNumber={4} />
-          <li>
-            <Link to="/fasit4">Fasit 4</Link>
-          </li>
-          ---
-          <TaskLink taskNumber={5} />
-          <TaskLink taskNumber={6} />
-          <TaskLink taskNumber={7} />
-          <TaskLink taskNumber={8} />
-          <li>
-            <Link to="/fasit9">Fasit 9</Link>
-          </li>
+          {taskList.slice(0, 5).map((task, index) => (
+            <li
+              key={index}
+              style={{
+                fontWeight: task.path === location.pathname ? "bold" : "normal",
+              }}
+            >
+              <Link
+                to={task.path}
+                style={{
+                  textDecoration:
+                    task.path === location.pathname ? "underline" : "none",
+                }}
+              >
+                {task.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <h2>React hook form</h2>
+        <ul>
+          {taskList.slice(5).map((task, index) => (
+            <li
+              key={index}
+              style={{
+                fontWeight: task.path === location.pathname ? "bold" : "normal",
+              }}
+            >
+              <Link
+                to={task.path}
+                style={{
+                  textDecoration:
+                    task.path === location.pathname ? "underline" : "none",
+                }}
+              >
+                {task.label}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
+
+      <div>
+        <button onClick={handlePrev} disabled={currentIndex === 0}>
+          Forrige Oppgave
+        </button>
+        <button
+          onClick={handleNext}
+          disabled={currentIndex === taskList.length - 1}
+        >
+          Neste Oppgave
+        </button>
+      </div>
 
       <hr />
 
