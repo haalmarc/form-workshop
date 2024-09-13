@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { postForm } from "../utils/postForm";
 
+/*
+  Oppgave: Legg til validering av input-feltene.
+  - Ingen av feltene kan være tomme
+  - Passordet må være minst 6 tegn
+  - Som bruker ønsker jeg å se hva som har gått feil
+*/
+
 export function Oppgave2() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -14,18 +21,6 @@ export function Oppgave2() {
   return (
     <div>
       <h1>Oppgave 2</h1>
-      <h2>Beskrivelse</h2>
-      <p>
-        I denne oppgaven skal du legge til validering av input-elementene, så
-        det ikke sendes avgårde ugyldige data.
-      </p>
-      <ul>
-        <li>Ingen av feltene kan være tomme</li>
-        <li>Passordet må være minst 6 tegn</li>
-        <li>
-          Som bruker ønsker jeg å se en feilmelding om hva som har gått feil
-        </li>
-      </ul>
       <form onSubmit={handleSubmit} className="form">
         <div>
           <label>

@@ -1,6 +1,9 @@
 import { Outlet, Link } from "react-router-dom";
 
 export function Layout() {
+  const numberOfTasks = 9;
+  const tasksFrom2 = Array.from({ length: numberOfTasks }, (_, i) => i + 2);
+
   return (
     <div>
       <nav>
@@ -8,12 +11,11 @@ export function Layout() {
           <li>
             <Link to="/">Oppgave 1</Link>
           </li>
-          <li>
-            <Link to="/opg2">Oppgave 2</Link>
-          </li>
-          <li>
-            <Link to="/opg3">Oppgave 3</Link>
-          </li>
+          {tasksFrom2.map((taskNumber) => (
+            <li key={taskNumber}>
+              <Link to={`/opg${taskNumber}`}>Oppgave {taskNumber}</Link>
+            </li>
+          ))}
         </ul>
       </nav>
 

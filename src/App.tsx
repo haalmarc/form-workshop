@@ -5,6 +5,8 @@ import { Oppgave2 } from "./oppgaver/Oppgave2";
 import { Oppgave3 } from "./oppgaver/Oppgave3";
 import { Layout } from "./components/Layout";
 import { NoMatch } from "./components/NoMatch";
+import { Oppgave4 } from "./oppgaver/Oppgave4";
+import { Oppgave5 } from "./oppgaver/Oppgave5";
 
 export function App() {
   return (
@@ -16,6 +18,8 @@ export function App() {
           <Route index element={<Oppgave1 />} />
           <Route path="opg2" element={<Oppgave2 />} />
           <Route path="opg3" element={<Oppgave3 />} />
+          <Route path="opg4" element={<Oppgave4 />} />
+          <Route path="opg5" element={<Oppgave5 />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
