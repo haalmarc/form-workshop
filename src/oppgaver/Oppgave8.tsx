@@ -2,9 +2,11 @@ import { postForm } from "../utils/postForm";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 /* 
-  Oppgave: Legg til feilhåndtering om skjemaet feiler.
+  👉 Oppgave: Legg til feilhåndtering om skjemaet feiler.
   - Bytt ut postForm med postFormWithError og vis en feilmelding når kallet feiler.
   - Hint: se https://react-hook-form.com/docs/useform/seterror
+
+  💡 Bonus-spørsmål: Du kunne også brukt seterror til å sette validering i felter. Hva foretrekker du?
 */
 
 type Inputs = {

@@ -2,8 +2,10 @@ import { postForm } from "../utils/postForm";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 /*
-  Oppgave: Som bruker ønsker jeg å se "laster"-tekst, mens skjemaet sendes inn
+  👉 Oppgave: Som bruker ønsker jeg å se "laster"-tekst, mens skjemaet sendes inn
   - Les om formState i useForm: https://react-hook-form.com/docs/useform/formstate
+
+  💡 Bonus-spørsmål: Du har flere varianter av isSubmit... Hvilken bør du bruker når?
 */
 
 type Inputs = {

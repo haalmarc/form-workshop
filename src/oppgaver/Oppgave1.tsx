@@ -1,7 +1,10 @@
 import { postForm } from "../utils/postForm";
 
 /* 
-    Oppgave: Bytt ut hardkodede verdier i postForm med verdier fra inputfeltene
+    👉 Oppgave: Bytt ut hardkodede verdier i postForm med verdier fra inputfeltene
+    - Bruk useState for å holde rede på verdiene
+
+    💡 Bonus-spørsmål: Hva er forskjellen på kontrollert og ukontrollert skjema?
 */
 
 export function Oppgave1() {

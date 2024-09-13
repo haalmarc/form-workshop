@@ -1,9 +1,11 @@
 import { postForm } from "../utils/postForm";
 
 /* 
-  Oppgave: Ta i bruk React Hook Form
+  👉 Oppgave: Ta i bruk React Hook Form
   - Submit data ved bruk av useForm og SubmitHandler
   - Se docs: https://react-hook-form.com/get-started
+
+  💡 Bonus-spørsmål: Hva skiller det å bruke vanilla React med useState vs useForm?
 */
 
 export function Oppgave5() {

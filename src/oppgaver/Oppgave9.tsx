@@ -2,12 +2,14 @@ import { postFormWithError } from "../utils/postForm";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 /* 
-  Oppgave: Bruk heller biblioteket Zod til å validere.
+  👉 Oppgave: Bruk heller biblioteket Zod til å validere.
   - Hint: se https://dev.to/majiedo/using-zod-with-react-hook-form-using-typescript-1mgk
 
   - Ingen av feltene kan være tomme
   - Passordet må være minst 6 tegn
   - Som bruker ønsker jeg å se en feilmelding om et felt er feil fylt ut
+
+  💡 Bonus-spørsmål: Når bør du bruke zod, og når bør du unngå det?
 */
 
 type Inputs = {

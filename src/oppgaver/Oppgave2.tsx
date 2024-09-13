@@ -2,10 +2,12 @@ import { useState } from "react";
 import { postForm } from "../utils/postForm";
 
 /*
-  Oppgave: Legg til validering av input-feltene.
+  👉 Oppgave: Legg til validering av input-feltene.
   - Ingen av feltene kan være tomme
   - Passordet må være minst 6 tegn
   - Som bruker ønsker jeg å se en feilmelding
+
+  💡 Bonus-spørsmål: Hvilken forskjell er det å putte input inni label versus utenfor?
 */
 
 export function Oppgave2() {

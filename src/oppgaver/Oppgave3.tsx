@@ -2,7 +2,9 @@ import { useState } from "react";
 import { postForm } from "../utils/postForm";
 
 /*
-  Oppgave: Som bruker ønsker jeg å se "laster"-tekst, mens skjemaet sendes inn
+  👉 Oppgave: Som bruker ønsker jeg å se "laster"-tekst, mens skjemaet sendes inn
+
+  💡 Bonus-spørsmål: Hva er forskjellen på å vise feilmeldingen med en error boundary vs bare i en div?
 */
 
 export function Oppgave3() {

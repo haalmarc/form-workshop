@@ -2,10 +2,12 @@ import { postForm } from "../utils/postForm";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 /*
-  Oppgave: Legg til validering av input-feltene.
+  👉 Oppgave: Legg til validering av input-feltene.
   - Ingen av feltene kan være tomme
   - Passordet må være minst 6 tegn
   - Som bruker ønsker jeg å se en feilmelding
+
+  💡 Bonus-spørsmål: Hvordan ville du lagt inn krav om "brukernavn må ha minst 1 tall"?
 */
 
 type Inputs = {

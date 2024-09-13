@@ -2,8 +2,10 @@ import { useState } from "react";
 import { postForm } from "../utils/postForm";
 
 /* 
-  Oppgave: Legg til feilhåndtering om skjemaet feiler.
+  👉 Oppgave: Legg til feilhåndtering om skjemaet feiler.
   - Bytt ut postForm med postFormWithError og vis en feilmelding når kallet feiler.
+
+  💡 Bonus-spørsmål: Hva er forskjellen på å vise feilmeldingen med en error boundary vs bare i en div?
 */
 
 export function Oppgave4() {
