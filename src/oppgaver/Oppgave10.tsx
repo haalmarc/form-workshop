@@ -1,31 +1,41 @@
-import { postFormWithError } from "../utils/postForm";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { postForm } from "../utils/postForm";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+
+const schema = z.object({
+  username: z.string().min(1, { message: "Brukernavn er påkrevd" }),
+  password: z
+    .string()
+    .min(6, { message: "Passord må være minst 6 tegn langt" }),
+});
+
+type Inputs = z.infer<typeof schema>;
 
 /* 
   👉 Oppgave: Ta i bruk TanStack Query med React Hook Form.
-  - Hint: se https://tkdodo.eu/blog/react-query-and-forms
+  - Bruk useQuery til å sette defaultValue. Bruk funksjonen fetchRandomName (fins i dette prosjektet).
+  - Se https://tkdodo.eu/blog/react-query-and-forms
 
-  - Sett initiell verdi på username til å være en verdi fra fetchRandomName.
 
-  💡 Bonus-spørsmål: Når bør du bruke zod, og når bør du unngå det?
+  💡 Bonus-spørsmål: Hva er forskjellen på å sette initiell verdi i useForm vs på feltet?
 */
-
-type Inputs = {
-  username: string;
-  password: string;
-};
 
 export function Oppgave10() {
   const {
     register,
     handleSubmit,
+    reset,
     setError,
     formState: { errors, isSubmitting },
-  } = useForm<Inputs>();
+  } = useForm<Inputs>({
+    resolver: zodResolver(schema),
+  });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      await postFormWithError(data.username, data.password);
+      await postForm(data.username, data.password);
+      reset();
     } catch (e) {
       if (e instanceof Error) {
         setError("root", {
@@ -46,10 +56,7 @@ export function Oppgave10() {
         <div>
           <label>
             Brukernavn
-            <input
-              type="text"
-              {...register("username", { required: "Brukernavn er påkrevd" })}
-            />
+            <input type="text" {...register("username")} />
             {errors.username && (
               <span className="errorMessage">{errors.username.message}</span>
             )}
@@ -59,16 +66,7 @@ export function Oppgave10() {
         <div>
           <label>
             Passord
-            <input
-              type="password"
-              {...register("password", {
-                required: "Passord er påkrevd",
-                minLength: {
-                  value: 6,
-                  message: "Passord må være minst 6 tegn langt",
-                },
-              })}
-            />
+            <input type="password" {...register("password")} />
             {errors.password && (
               <span className="errorMessage">{errors.password.message}</span>
             )}
