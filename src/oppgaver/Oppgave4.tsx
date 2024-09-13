@@ -3,7 +3,7 @@ import { postForm } from "../utils/postForm";
 
 /* 
   Oppgave: Legg til feilhåndtering om skjemaet feiler.
-  - Bytt ut postForm med postFormWithError og vis en feilmelding.
+  - Bytt ut postForm med postFormWithError og vis en feilmelding når kallet feiler.
 */
 
 export function Oppgave4() {

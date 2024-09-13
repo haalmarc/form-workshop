@@ -28,6 +28,8 @@ export function Layout() {
           ---
           <TaskLink taskNumber={5} />
           <TaskLink taskNumber={6} />
+          <TaskLink taskNumber={7} />
+          <TaskLink taskNumber={8} />
         </ul>
       </nav>
 

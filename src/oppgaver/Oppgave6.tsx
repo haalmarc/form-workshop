@@ -17,8 +17,7 @@ export function Oppgave6() {
   const { register, handleSubmit } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data);
-    await postForm("todo", "todo");
+    await postForm(data.username, data.username);
   };
 
   return (

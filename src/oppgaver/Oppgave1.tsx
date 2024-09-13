@@ -1,6 +1,8 @@
 import { postForm } from "../utils/postForm";
 
-// Oppgave: Bytt ut hardkodede verdier i postForm med verdier fra inputfeltene
+/* 
+    Oppgave: Bytt ut hardkodede verdier i postForm med verdier fra inputfeltene
+*/
 
 export function Oppgave1() {
   async function onSubmit(event: React.FormEvent) {
