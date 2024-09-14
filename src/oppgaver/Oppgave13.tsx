@@ -1,6 +1,11 @@
-import { RandomName, fetchRandomName, postForm } from "../utils/postForm";
+import {
+  RandomName,
+  fetchRandomName,
+  postForm,
+  queryKeyUsers,
+} from "../utils/postForm";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -14,18 +19,16 @@ const schema = z.object({
 type Inputs = z.infer<typeof schema>;
 
 /* 
-  👉 Oppgave: Ta i bruk useMutation
-  - Wrap postForm med useMutation
-  - Hent nye data for query "users" (se variabel queryKeyUsers) etter innsending
-  - Reset felter etter mutering
-  - Bruk laste-status fra muteringen
+  👉 Oppgave: Støtt henting av data i bakgrunnen
+  - Bruk Controller fra React Hook Form
+  - Vis hentet data i feltene med mindre feltet er endret fra klienten
 
   - Se https://tkdodo.eu/blog/react-query-and-forms
 
-  💡 Bonus-spørsmål: Hva er forskjellen på onSuccess i useMutation vs i muteringsfunksjonen?
+  💡 Bonus-spørsmål: Hvorfor trenger du å bruke Controller, enn å bruke register-funksjonen som før?
 */
 
-export function Oppgave12() {
+export function Oppgave13() {
   const { data } = useQuery({
     queryKey: ["random-name"],
     queryFn: fetchRandomName,
@@ -43,36 +46,46 @@ interface FormProps {
 }
 
 function Form({ data }: FormProps) {
+  const queryClient = useQueryClient();
+
   const {
     register,
     handleSubmit,
     reset,
     setError,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<Inputs>({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    try {
-      await postForm(data.username, data.password);
-      reset();
-    } catch (e) {
-      if (e instanceof Error) {
+  const { mutate, isPending } = useMutation({
+    mutationFn: (formData: Inputs) =>
+      postForm(formData.username, formData.password),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeyUsers });
+    },
+    onError: (error: unknown) => {
+      if (error instanceof Error) {
         setError("root", {
-          message: e.message,
+          message: error.message,
         });
       } else {
         setError("root", {
           message: "En ukjent feil oppstod",
         });
       }
-    }
+    },
+  });
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    mutate(data, {
+      onSuccess: () => reset(),
+    });
   };
 
   return (
     <div>
-      <h1>Oppgave 12 - useMutation</h1>
+      <h1>Oppgave 12 - Controller</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <div>
           <label>
@@ -80,7 +93,7 @@ function Form({ data }: FormProps) {
             <input
               type="text"
               {...register("username")}
-              defaultValue={data.name}
+              defaultValue={data?.name}
             />
             {errors.username && (
               <span className="errorMessage">{errors.username.message}</span>
@@ -98,8 +111,8 @@ function Form({ data }: FormProps) {
           </label>
         </div>
 
-        <button disabled={isSubmitting}>
-          {isSubmitting ? "Laster" : "Opprett bruker"}
+        <button disabled={isPending}>
+          {isPending ? "Laster" : "Opprett bruker"}
         </button>
         {errors.root && (
           <span className="errorMessage">{errors.root.message}</span>

@@ -17,6 +17,7 @@ const taskList = [
   { path: "/opg10", label: "Oppgave 10" },
   { path: "/opg11", label: "Oppgave 11" },
   { path: "/opg12", label: "Oppgave 12" },
+  { path: "/opg13", label: "Oppgave 13" },
 ];
 
 interface User {

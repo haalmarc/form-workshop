@@ -28,7 +28,7 @@ export async function fetchUsers() {
   return response.json();
 }
 
-interface RandomName {
+export interface RandomName {
   name: string;
 }
 export async function fetchRandomName(): Promise<RandomName> {

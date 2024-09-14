@@ -14,15 +14,15 @@ const schema = z.object({
 type Inputs = z.infer<typeof schema>;
 
 /* 
-  👉 Oppgave: Ta i bruk useMutation
-  - Wrap postForm med useMutation
-  - Hent nye data for query "users" (se variabel queryKeyUsers) etter innsending
-  - Reset felter etter mutering
-  - Bruk laste-status fra muteringen
+  👉 Oppgave: Tillat å submitte skjemaet 
+      uten at du som bruker trenger å endre noe i username-feltet
+    
+  - Løs bugen ved å splitte opp i egen form-komponent, 
+    se https://tkdodo.eu/blog/react-query-and-forms#data-might-be-undefined
 
-  - Se https://tkdodo.eu/blog/react-query-and-forms
-
-  💡 Bonus-spørsmål: Hva er forskjellen på onSuccess i useMutation vs i muteringsfunksjonen?
+  💡 Bonus-spørsmål: Undersøk flere måter å løse problemet på. 
+  Hvilken måte liker du best?
+  Se også https://www.reddit.com/r/reactjs/comments/111mrek/react_hook_form_tanstack_usequery_async/
 */
 
 export function Oppgave11() {
@@ -60,7 +60,7 @@ export function Oppgave11() {
 
   return (
     <div>
-      <h1>Oppgave 11 - useMutation</h1>
+      <h1>Oppgave 11 - Oppsplitting</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <div>
           <label>

@@ -14,11 +14,17 @@ type Inputs = z.infer<typeof schema>;
 
 /* 
   👉 Oppgave: Ta i bruk TanStack Query med React Hook Form.
-  - Bruk useQuery til å sette defaultValue. Bruk funksjonen fetchRandomName (fins i dette prosjektet).
+  - Bruk funksjonen fetchRandomName (fins i dette prosjektet) til å hente et navn. 
+    Wrap denne i useQuery
+  - Sett initiell verdi på username til å være navnet du henter
+  - OBS. Det er noen diskrete bugs som introduseres med disse endringene. 
+    Dette ser vi på i neste oppgave
+  
   - Se https://tkdodo.eu/blog/react-query-and-forms
 
 
-  💡 Bonus-spørsmål: Hva er forskjellen på å sette initiell verdi i useForm vs på feltet?
+  💡 Bonus-spørsmål: Refresh siden, legg inn verdi i password (ikke username) og submit. 
+    Hvorfor tror ikke skjemaet at du har en verdi der?
 */
 
 export function Oppgave10() {
