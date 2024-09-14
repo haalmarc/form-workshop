@@ -40,3 +40,23 @@ export async function fetchRandomName(): Promise<RandomName> {
 }
 
 export const queryKeyUsers = ["users"];
+
+export async function postFormWithBirthday(
+  username: string,
+  password: string,
+  birthday: string
+) {
+  const response = await fetch("http://localhost:8000/users", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username,
+      password,
+      birthday,
+    }),
+  });
+
+  await response.json();
+}

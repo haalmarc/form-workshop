@@ -22,6 +22,7 @@ type Inputs = z.infer<typeof schema>;
   👉 Oppgave: Legg til datepicker
   - Bruk Controller fra React Hook Form
   - Legg til nytt felt i zod-skjemaet
+  - Bytt ut funksjon "postForm" med "postFormWithBirthday"
 
   - Se https://react-hook-form.com/docs/usecontroller/controller
     og https://zod.dev/?id=dates-1

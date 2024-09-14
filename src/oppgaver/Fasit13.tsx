@@ -1,7 +1,7 @@
 import {
   RandomName,
   fetchRandomName,
-  postForm,
+  postFormWithBirthday,
   queryKeyUsers,
 } from "../utils/postForm";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -55,7 +55,11 @@ function Form({ data }: FormProps) {
 
   const { mutate, isPending } = useMutation({
     mutationFn: (formData: Inputs) =>
-      postForm(formData.username, formData.password),
+      postFormWithBirthday(
+        formData.username,
+        formData.password,
+        formData.birthday.toString()
+      ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeyUsers });
     },
@@ -80,7 +84,7 @@ function Form({ data }: FormProps) {
 
   return (
     <div>
-      <h1>Oppgave 14 - Fasit</h1>
+      <h1>Oppgave 13 - Fasit</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <div>
           <label>
