@@ -16,6 +16,7 @@ const taskList = [
   { path: "/fasit9", label: "Fasit 9" },
   { path: "/opg10", label: "Oppgave 10" },
   { path: "/opg11", label: "Oppgave 11" },
+  { path: "/opg12", label: "Oppgave 12" },
 ];
 
 interface User {
@@ -84,7 +85,32 @@ export function Layout() {
         <div>
           <h2>React hook form</h2>
           <ul>
-            {taskList.slice(5).map((task, index) => (
+            {taskList.slice(5, 10).map((task, index) => (
+              <li
+                key={index}
+                style={{
+                  fontWeight:
+                    task.path === location.pathname ? "bold" : "normal",
+                }}
+              >
+                <Link
+                  to={task.path}
+                  style={{
+                    textDecoration:
+                      task.path === location.pathname ? "underline" : "none",
+                  }}
+                >
+                  {task.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h2>TanStack Query</h2>
+          <ul>
+            {taskList.slice(10).map((task, index) => (
               <li
                 key={index}
                 style={{
