@@ -6,7 +6,7 @@ import { postForm } from "../utils/postForm";
   - Vis "laster" på knappen mens det lastes
   - Ikke tillat å sende inn flere ganger mens det lastes
 
-  💡 Bonus-spørsmål: TODO
+  💡 Bonus-spørsmål: Hva skjer om brukeren lukker siden mens forespørselen pågår?
 */
 
 export function Oppgave3() {
