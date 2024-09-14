@@ -49,7 +49,9 @@ export function Oppgave2() {
           </label>
         </div>
 
-        <button type="submit">Opprett bruker</button>
+        <button className="submitButton" type="submit">
+          Opprett bruker
+        </button>
       </form>
     </div>
   );

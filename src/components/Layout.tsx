@@ -18,6 +18,7 @@ const taskList = [
   { path: "/opg11", label: "Oppgave 11" },
   { path: "/opg12", label: "Oppgave 12" },
   { path: "/opg13", label: "Oppgave 13" },
+  { path: "/fasit13", label: "Fasit 13" },
 ];
 
 interface User {
@@ -135,7 +136,11 @@ export function Layout() {
       </nav>
 
       <div>
-        <button onClick={handlePrev} disabled={currentIndex === 0}>
+        <button
+          className="submitButton"
+          onClick={handlePrev}
+          disabled={currentIndex === 0}
+        >
           Forrige Oppgave
         </button>
         <button

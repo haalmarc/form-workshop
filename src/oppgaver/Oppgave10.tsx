@@ -79,7 +79,7 @@ export function Oppgave10() {
           </label>
         </div>
 
-        <button disabled={isSubmitting}>
+        <button className="submitButton" disabled={isSubmitting}>
           {isSubmitting ? "Laster" : "Opprett bruker"}
         </button>
         {errors.root && (

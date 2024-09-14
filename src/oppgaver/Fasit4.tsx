@@ -90,7 +90,7 @@ export function Fasit4() {
           </label>
         </div>
 
-        <button type="submit" disabled={isLoading}>
+        <button className="submitButton" type="submit" disabled={isLoading}>
           {isLoading ? "Laster" : "Opprett bruker"}
         </button>
         {formError && <span className="errorMessage">{formError}</span>}

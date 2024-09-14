@@ -1,7 +1,13 @@
-import { RandomName, fetchRandomName, postForm } from "../utils/postForm";
+import {
+  RandomName,
+  fetchRandomName,
+  postForm,
+  queryKeyUsers,
+} from "../utils/postForm";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useQuery } from "@tanstack/react-query";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import DatePicker from "react-datepicker";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
 const schema = z.object({
@@ -9,23 +15,14 @@ const schema = z.object({
   password: z
     .string()
     .min(6, { message: "Passord må være minst 6 tegn langt" }),
+  birthday: z.date({
+    required_error: "Bursdagsdato er påkrevd",
+  }),
 });
 
 type Inputs = z.infer<typeof schema>;
 
-/* 
-  👉 Oppgave: Ta i bruk useMutation
-  - Wrap postForm med useMutation
-  - Hent nye data for query "users" (se variabel queryKeyUsers) etter innsending
-  - Reset felter etter mutering
-  - Bruk laste-status fra muteringen
-
-  - Se https://tkdodo.eu/blog/react-query-and-forms
-
-  💡 Bonus-spørsmål: Hva er forskjellen på onSuccess i useMutation vs i muteringsfunksjonen?
-*/
-
-export function Oppgave12() {
+export function Fasit13() {
   const { data } = useQuery({
     queryKey: ["random-name"],
     queryFn: fetchRandomName,
@@ -43,36 +40,47 @@ interface FormProps {
 }
 
 function Form({ data }: FormProps) {
+  const queryClient = useQueryClient();
+
   const {
     register,
     handleSubmit,
     reset,
     setError,
-    formState: { errors, isSubmitting },
+    control,
+    formState: { errors },
   } = useForm<Inputs>({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    try {
-      await postForm(data.username, data.password);
-      reset();
-    } catch (e) {
-      if (e instanceof Error) {
+  const { mutate, isPending } = useMutation({
+    mutationFn: (formData: Inputs) =>
+      postForm(formData.username, formData.password),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeyUsers });
+    },
+    onError: (error: unknown) => {
+      if (error instanceof Error) {
         setError("root", {
-          message: e.message,
+          message: error.message,
         });
       } else {
         setError("root", {
           message: "En ukjent feil oppstod",
         });
       }
-    }
+    },
+  });
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    mutate(data, {
+      onSuccess: () => reset(),
+    });
   };
 
   return (
     <div>
-      <h1>Oppgave 12 - useMutation</h1>
+      <h1>Oppgave 14 - Fasit</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <div>
           <label>
@@ -80,7 +88,7 @@ function Form({ data }: FormProps) {
             <input
               type="text"
               {...register("username")}
-              defaultValue={data.name}
+              defaultValue={data?.name}
             />
             {errors.username && (
               <span className="errorMessage">{errors.username.message}</span>
@@ -98,8 +106,28 @@ function Form({ data }: FormProps) {
           </label>
         </div>
 
-        <button className="submitButton" disabled={isSubmitting}>
-          {isSubmitting ? "Laster" : "Opprett bruker"}
+        <div>
+          <label>
+            Bursdagsdato
+            <Controller
+              control={control}
+              name="birthday"
+              render={({ field }) => (
+                <DatePicker
+                  selected={field.value}
+                  onChange={(date) => field.onChange(date)}
+                  dateFormat="dd/MM/yyyy"
+                />
+              )}
+            />
+            {errors.birthday && (
+              <span className="errorMessage">{errors.birthday.message}</span>
+            )}
+          </label>
+        </div>
+
+        <button className="submitButton" disabled={isPending}>
+          {isPending ? "Laster" : "Opprett bruker"}
         </button>
         {errors.root && (
           <span className="errorMessage">{errors.root.message}</span>

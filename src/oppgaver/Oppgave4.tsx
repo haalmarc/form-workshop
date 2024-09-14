@@ -88,7 +88,7 @@ export function Oppgave4() {
           </label>
         </div>
 
-        <button type="submit" disabled={isLoading}>
+        <button className="submitButton" type="submit" disabled={isLoading}>
           {isLoading ? "Laster" : "Opprett bruker"}
         </button>
       </form>

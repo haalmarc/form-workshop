@@ -19,13 +19,14 @@ const schema = z.object({
 type Inputs = z.infer<typeof schema>;
 
 /* 
-  👉 Oppgave: Støtt henting av data i bakgrunnen
+  👉 Oppgave: Legg til datepicker
   - Bruk Controller fra React Hook Form
-  - Vis hentet data i feltene med mindre feltet er endret fra klienten
+  - Legg til nytt felt i zod-skjemaet
 
-  - Se https://tkdodo.eu/blog/react-query-and-forms
+  - Se https://react-hook-form.com/docs/usecontroller/controller
+    og https://zod.dev/?id=dates-1
 
-  💡 Bonus-spørsmål: Hvorfor trenger du å bruke Controller, enn å bruke register-funksjonen som før?
+  💡 Bonus-spørsmål: Hvorfor kan du ikke bruke register-funksjonen for eksterne inputfelter?
 */
 
 export function Oppgave13() {
@@ -85,7 +86,7 @@ function Form({ data }: FormProps) {
 
   return (
     <div>
-      <h1>Oppgave 12 - Controller</h1>
+      <h1>Oppgave 13 - Controller</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <div>
           <label>
@@ -111,7 +112,7 @@ function Form({ data }: FormProps) {
           </label>
         </div>
 
-        <button disabled={isPending}>
+        <button className="submitButton" disabled={isPending}>
           {isPending ? "Laster" : "Opprett bruker"}
         </button>
         {errors.root && (

@@ -62,7 +62,7 @@ export function Oppgave7() {
           </label>
         </div>
 
-        <button>Opprett bruker</button>
+        <button className="submitButton">Opprett bruker</button>
       </form>
     </div>
   );
