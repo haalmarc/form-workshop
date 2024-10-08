@@ -19,7 +19,7 @@ export function Oppgave8() {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -63,7 +63,9 @@ export function Oppgave8() {
           </label>
         </div>
 
-        <button className="submitButton">Opprett bruker</button>
+        <button className="submitButton" disabled={isSubmitting}>
+          {isSubmitting ? "Laster" : "Opprett bruker"}
+        </button>
       </form>
     </div>
   );
