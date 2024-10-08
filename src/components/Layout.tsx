@@ -22,6 +22,7 @@ const taskList = [
   { path: "/opg6", label: "Oppgave 6" },
   { path: "/opg7", label: "Oppgave 7" },
   { path: "/opg8", label: "Oppgave 8" },
+  { path: "/opg9", label: "Oppgave 9" },
   { path: "/fasit9", label: "Fasit 9" },
   { path: "/opg10", label: "Oppgave 10" },
   { path: "/opg11", label: "Oppgave 11" },
@@ -97,7 +98,7 @@ export function Layout() {
         <div>
           <h2>React hook form</h2>
           <ul>
-            {taskList.slice(5, 10).map((task, index) => (
+            {taskList.slice(5, 11).map((task, index) => (
               <li
                 key={index}
                 style={{
@@ -122,7 +123,7 @@ export function Layout() {
         <div>
           <h2>TanStack Query</h2>
           <ul>
-            {taskList.slice(10).map((task, index) => (
+            {taskList.slice(11).map((task, index) => (
               <li
                 key={index}
                 style={{
